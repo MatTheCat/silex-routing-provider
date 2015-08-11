@@ -1,0 +1,32 @@
+{
+    "name": "matthecat/silex-routing-provider",
+    "description": "Routing service provider for Silex",
+    "keywords": ["silex", "routing"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "MatTheCat",
+            "email": "math.lechat@gmail.com",
+            "homepage": "http://www.matthecat.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "silex/silex": "<2",
+        "symfony/config": "*",
+        "symfony/routing": "*"
+    },
+    "require-dev": {
+        "fabpot/php-cs-fixer": "*",
+        "mikey179/vfsStream": "*",
+        "phpunit/phpunit": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "MatTheCat\\Routing\\": "src/"
+        }
+    },
+    "suggest": {
+        "symfony/yaml": "For using Yaml routing files"
+    }
+}

@@ -1,0 +1,26 @@
+language: php
+
+php:
+    - 5.4
+    - 5.5
+    - 5.6
+
+env:
+    - SILEX_VERSION=1.0.*
+    - SILEX_VERSION=1.1.*
+    - SILEX_VERSION=1.2.*
+    - SILEX_VERSION=1.3.*
+
+cache:
+    directories:
+        - $HOME/.composer/cache
+
+before_script:
+    - composer require silex/silex:${SILEX_VERSION}
+    - composer require symfony/config:*
+    - composer require symfony/routing:*
+    - composer require mikey179/vfsStream:*
+
+script: phpunit --coverage-text
+
+sudo: false
