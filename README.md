@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/MatTheCat/silex-routing-provider.svg?branch=master)](https://travis-ci.org/MatTheCat/silex-routing-provider)
+
 # RoutingServiceProvider
 
 The *RoutingServiceProvider* leverages the [Symfony routing component](http://symfony.com/doc/current/components/routing/introduction.html) for Silex.
