@@ -13,7 +13,7 @@ The *RoutingServiceProvider* leverages the [Symfony routing component](http://sy
 
 - **router.loader_resolver**: An instance of `Symfony\Component\Config\Loader\LoaderResolver`. You can extend it to add new loaders.
 - **router**: An instance of `Symfony\Component\Routing\Router`.
-- **url_matcher**: Alias of **router**.
+- **request_matcher**: Alias of **router**.
 - **url_generator**: Alias of **router**.
 
 ## Registering

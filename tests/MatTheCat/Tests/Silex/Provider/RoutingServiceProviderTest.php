@@ -24,7 +24,7 @@ class RoutingServiceProviderTest extends \PHPUnit_Framework_TestCase
 
         $this->assertContainsOnlyInstancesOf(
             '\Symfony\Component\Routing\Router',
-            [$app['router'], $app['url_generator'], $app['url_matcher']]
+            [$app['router'], $app['url_generator'], $app['request_matcher']]
         );
     }
 

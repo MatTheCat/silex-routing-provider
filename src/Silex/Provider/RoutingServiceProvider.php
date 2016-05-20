@@ -2,8 +2,9 @@
 
 namespace MatTheCat\Routing\Silex\Provider;
 
+use Pimple\Container;
+use Pimple\ServiceProviderInterface;
 use Silex\Application;
-use Silex\ServiceProviderInterface;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\DelegatingLoader;
 use Symfony\Component\Config\Loader\LoaderResolver;
@@ -15,11 +16,11 @@ use Symfony\Component\Routing\Router;
 
 class RoutingServiceProvider implements ServiceProviderInterface
 {
-    public function register(Application $app)
+    public function register(Container $app)
     {
         $app['router.options'] = [];
 
-        $app['router.loader_resolver'] = $app->share(function () {
+        $app['router.loader_resolver'] = function () {
             $fileLocator = new FileLocator();
 
             $loaderResolver = new LoaderResolver([
@@ -33,9 +34,9 @@ class RoutingServiceProvider implements ServiceProviderInterface
             }
 
             return $loaderResolver;
-        });
+        };
 
-        $app['router'] = $app->share(function (Application $app) {
+        $app['router'] = function (Application $app) {
             $router = new Router(
                 new ClosureLoader(),
                 function () use ($app) {
@@ -51,26 +52,22 @@ class RoutingServiceProvider implements ServiceProviderInterface
                 },
                 $app['router.options'] + [
                     'debug' => isset($app['debug']) ? $app['debug'] : false,
-                    'matcher_base_class' => 'Silex\RedirectableUrlMatcher',
-                    'matcher_class' => 'Silex\RedirectableUrlMatcher',
+                    'matcher_base_class' => 'Silex\Provider\Routing\RedirectableUrlMatcher',
+                    'matcher_class' => 'Silex\Provider\Routing\RedirectableUrlMatcher',
                 ],
                 $app['request_context'],
                 $app['logger']
             );
 
             return $router;
-        });
+        };
 
-        $app['url_matcher'] = $app->share(function (Application $app) {
+        $app['request_matcher'] = function (Application $app) {
             return $app['router'];
-        });
+        };
 
-        $app['url_generator'] = $app->share(function (Application $app) {
+        $app['url_generator'] = function (Application $app) {
             return $app['router'];
-        });
-    }
-
-    public function boot(Application $app)
-    {
+        };
     }
 }
