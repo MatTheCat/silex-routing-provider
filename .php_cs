@@ -1,12 +1,13 @@
 <?php
 
-$finder = \Symfony\Component\Finder\Finder::create()
-    ->files()
-    ->name('*.php')
-    ->in(array('src', 'tests'));
-
-$config = \Symfony\CS\Config\Config::create()
-    ->level(\Symfony\CS\FixerInterface::SYMFONY_LEVEL)
-    ->finder($finder);
-
-return $config;
+return \PhpCsFixer\Config::create()
+    ->setFinder(
+        \Symfony\Component\Finder\Finder::create()
+            ->files()
+            ->name('*.php')
+            ->in(array('src', 'tests'))
+    )
+    ->setRules([
+        '@Symfony' => true,
+        'array_syntax' => ['syntax' => 'short'],
+    ]);
