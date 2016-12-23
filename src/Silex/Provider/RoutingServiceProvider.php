@@ -72,5 +72,6 @@ class RoutingServiceProvider implements ServiceProviderInterface
 
     public function boot(Application $app)
     {
+        $app['router']->getRouteCollection();
     }
 }

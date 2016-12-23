@@ -59,6 +59,8 @@ class RoutingServiceProviderTest extends \PHPUnit_Framework_TestCase
 
         $app->boot();
 
+        $this->assertCount(1, $app['routes']);
+
         /** @var \Symfony\Component\Routing\RouterInterface $router */
         $router = $app['router'];
 
