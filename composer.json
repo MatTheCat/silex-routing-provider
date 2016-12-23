@@ -17,7 +17,7 @@
         "symfony/routing": "*"
     },
     "require-dev": {
-        "fabpot/php-cs-fixer": "*",
+        "friendsofphp/php-cs-fixer": "~2",
         "mikey179/vfsStream": "*",
         "phpunit/phpunit": "*"
     },
