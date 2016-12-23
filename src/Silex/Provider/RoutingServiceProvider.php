@@ -4,6 +4,7 @@ namespace MatTheCat\Routing\Silex\Provider;
 
 use Pimple\Container;
 use Pimple\ServiceProviderInterface;
+use Silex\Api\BootableProviderInterface;
 use Silex\Application;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\Config\Loader\DelegatingLoader;
@@ -14,7 +15,7 @@ use Symfony\Component\Routing\Loader\XmlFileLoader;
 use Symfony\Component\Routing\Loader\YamlFileLoader;
 use Symfony\Component\Routing\Router;
 
-class RoutingServiceProvider implements ServiceProviderInterface
+class RoutingServiceProvider implements ServiceProviderInterface, BootableProviderInterface
 {
     public function register(Container $app)
     {
@@ -69,5 +70,13 @@ class RoutingServiceProvider implements ServiceProviderInterface
         $app['url_generator'] = function (Application $app) {
             return $app['router'];
         };
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function boot(Application $app)
+    {
+        $app['router']->getRouteCollection();
     }
 }
